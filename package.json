@@ -1,0 +1,30 @@
+{
+  "name": "node-jxa",
+  "version": "0.0.2",
+  "description": "Use any node.js modules in your JXA (Javascript for OSX automation) scripts.",
+  "main": "index.js",
+  "os": [
+    "darwin"
+  ],
+  "bin": {
+    "node-jxa": "bin/jxa-browserify-run.sh",
+    "node-jxa-debug": "bin/jxa-browserify-debug.sh"
+  },
+  "scripts": {
+    "jxa-browserify-run": "./bin/jxa-browserify-run.sh ",
+    "jxa-browserify-compile": "./bin/jxa-browserify-compile.sh "
+  },
+  "keywords": [
+    "osa",
+    "jxa",
+    "applescript"
+  ],
+  "author": "John Elm",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^16.1.1"
+  },
+  "devDependencies": {
+    "jest": "^22.4.3"
+  }
+}
