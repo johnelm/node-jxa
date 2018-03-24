@@ -1,6 +1,6 @@
 {
   "name": "node-jxa",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Use any node.js modules in your JXA (Javascript for OSX automation) scripts.",
   "main": "index.js",
   "os": [
