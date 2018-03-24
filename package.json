@@ -7,7 +7,7 @@
     "darwin"
   ],
   "bin": {
-    "node-jxa": "bin/jxa-browserify-run.sh",
+    "node-jxa": "bin/node-jxa.sh",
     "node-jxa-debug": "bin/jxa-browserify-debug.sh"
   },
   "scripts": {

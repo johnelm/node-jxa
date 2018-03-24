@@ -7,7 +7,17 @@ const OSA_JXA_CMD = 'osascript -l JavaScript';
 
 const b = browserify();
 
-b.add( process.argv[ 2 ] );
+let options = {};
+if ( process.argv.includes('--debug')) {
+  options.debug = true;
+}
+
+if ( process.argv.length < 3 ) {
+  console.error( 'error: no jxa script specified' );
+  process.exit( 1 );
+}
+
+b.add( process.argv[ 2 ], options );
 b.bundle( ( err, src ) => {
   if ( !!err ) {
     console.err( err );
