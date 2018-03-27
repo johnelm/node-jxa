@@ -1,37 +1,26 @@
-const browserify = require( 'browserify' );
-const cp = require( 'child_process' );
+#!/usr/bin/env node
+const nodeJxa = require('./node-jxa');
+const DEBUG_SWITCHES = [ '--debug', '-d' ];
 
-const HEAD = 'window = this;\nObjC.import("stdlib");\n';
-const TAIL = ';\n$.exit(0);';
-const OSA_JXA_CMD = 'osascript -l JavaScript';
+module.exports = ( processArgs ) => {
 
-const b = browserify();
+  const nonProcessArgs = processArgs.argv.slice( 2 );
+  const nonDebugSwitchArgs = nonProcessArgs.filter( arg => !DEBUG_SWITCHES.includes( arg ));
+  const jxaScriptArg = nonDebugSwitchArgs[ 0 ];
 
-let options = {};
-if ( process.argv.includes('--debug')) {
-  options.debug = true;
-}
-
-if ( process.argv.length < 3 ) {
-  console.error( 'error: no jxa script specified' );
-  process.exit( 1 );
-}
-
-b.add( process.argv[ 2 ], options );
-b.bundle( ( err, src ) => {
-  if ( !!err ) {
-    console.err( err );
-    process.exit( 1 );
+  if ( !nonDebugSwitchArgs.length ) {
+    console.error( 'error: no jxa script specified' );
+  } else {
+    nodeJxa(
+      jxaScriptArg,
+      {
+        debug: 
+          ['true', '1'].includes ( processArgs.env.NODE_DEBUG_JXA ) 
+          ||
+          !!(nonProcessArgs.filter( arg => DEBUG_SWITCHES.includes( arg )).length)
+      }
+    )
   }
+};
 
-  let fixed = HEAD;
-  fixed += src.toString();
-  fixed += TAIL;
-
-  let process = cp.exec( OSA_JXA_CMD, ( error, stdout, stderr ) => {
-    console.log( error, stdout, stderr );
-  });
-  process.stdin.write( fixed );
-  process.stdin.end();
-});
-
+module.exports( { argv: process.argv, env: process.env } );
