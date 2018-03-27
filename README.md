@@ -1,5 +1,7 @@
 # node-jxa
 
+DRAFT  will finish readme shortly
+
 ## about node version and JXA runtime
 
 Node.js is only used to bundle modules.
