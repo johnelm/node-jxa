@@ -6,32 +6,29 @@ const TAIL = ';\n$.exit(0);';
 const OSA_JXA_CMD = 'osascript -l JavaScript';
 
 
-module.exports = ( scriptFile, browserifyOptions = {} ) => {
+module.exports = ( scriptFile, browserifyOptions = { debug: false } ) => {
   const b = browserify();
   b.add( scriptFile, browserifyOptions );
   b.bundle( ( error, src ) => {
     if ( !!error ) {
       console.error( error );
-      process.exit( 1 );
+      osaProcess.exit( 1 );
     }
 
-    let fixed = HEAD;
-    fixed += src.toString();
-    fixed += TAIL;
+    let modifiedScriptCode = HEAD;
+    modifiedScriptCode += src.toString();
+    modifiedScriptCode += TAIL;
 
-    let process = cp.exec( OSA_JXA_CMD, ( error, stdout, stderr ) => {
-      //TODO recall how to pipe with parent's IPC channels
+    let osaProcess = cp.exec( OSA_JXA_CMD, ( error, stdout, stderr ) => {
       if ( !!error ) {
         console.error( error );
-        process.exit( 1 );
+        osaProcess.exit( 1 );
       }
       console.log( stdout );
       console.error( stderr );
-      // stdout.pipe(process.stdout);
-      // stderr.pipe(process.stderr);
     });
-    process.stdin.write( fixed );
-    process.stdin.end();
+    osaProcess.stdin.write( modifiedScriptCode );
+    osaProcess.stdin.end();
   });
 }
 
