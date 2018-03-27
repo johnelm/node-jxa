@@ -97,19 +97,28 @@ describe('handles jxa script argument properly', () => {
     expect(nodeJxa.mock.calls[0][0]).toBe('./example.js');
   });
   test('handles missing script argument', () => {
+
+    global.console = { error: jest.fn() }
+
     index(
       Object.assign({}, defaultProcessArgs, {
         argv: ['node', 'index']
       })
     );
+
+    expect( console.error ).toBeCalled();
     expect(nodeJxa.mock.calls.length).toBe(0);
   });
   test('handles missing script argument, with debug switch', () => {
+
+    global.console = { error: jest.fn() }
+
     index(
       Object.assign({}, defaultProcessArgs, {
         argv: ['node', 'index', '--debug']
       })
     );
+    expect( console.error ).toBeCalled();
     expect(nodeJxa.mock.calls.length).toBe(0);
   });
 
