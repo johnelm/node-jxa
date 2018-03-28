@@ -9,7 +9,9 @@
     "node-jxa": "bin/node-jxa.sh",
     "node-debug-jxa": "bin/node-debug-jxa.sh"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "jest"
+  },
   "keywords": [
     "osa",
     "jxa",
