@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const nodeJxa = require('./node-jxa');
+const DEBUG_ENV_VAR = 'NODE_DEBUG_JXA';
 const DEBUG_SWITCHES = [ '--debug', '-d' ];
 
 module.exports = ( processArgs ) => {
@@ -15,7 +16,7 @@ module.exports = ( processArgs ) => {
       jxaScriptArg,
       {
         debug: 
-          ['true', '1'].includes ( processArgs.env.NODE_DEBUG_JXA ) 
+          ['true', '1'].includes ( processArgs.env[ DEBUG_ENV_VAR ] ) 
           ||
           !!(nonProcessArgs.filter( arg => DEBUG_SWITCHES.includes( arg )).length)
       }
