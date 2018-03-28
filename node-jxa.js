@@ -12,7 +12,7 @@ module.exports = ( scriptFile, browserifyOptions = { debug: false } ) => {
   b.bundle( ( error, src ) => {
     if ( !!error ) {
       console.error( error );
-      osaProcess.exit( 1 );
+      process.exit( 1 );
     }
 
     let modifiedScriptCode = HEAD;
@@ -22,7 +22,7 @@ module.exports = ( scriptFile, browserifyOptions = { debug: false } ) => {
     let osaProcess = cp.exec( OSA_JXA_CMD, ( error, stdout, stderr ) => {
       if ( !!error ) {
         console.error( error );
-        osaProcess.exit( 1 );
+        process.exit( 1 );
       }
       console.log( stdout );
       console.error( stderr );
