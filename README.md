@@ -60,7 +60,7 @@ chmod u+x my-jxa-script.js
 You can of course use the `node-jxa` commands on the command line; simply provide the jxa script as the first argument:
 
 ```bash
-node.jxa ./my-jxa-script.js
+node-jxa ./my-jxa-script.js
 ```
 
 ### Node.js engine and JXA runtime
