@@ -101,4 +101,4 @@ Sourcemaps will also be included if the environment variable `NODE-DEBUG-JXA` is
 
 ( I have a few more good JXA resources, I'll add them here shortly )
 
-Unfortunately, there are many more resources available for Applescript on the interwebs (or even from Apple) than there is for JXA.  When googling for an example or recipe, you'll probably find much more help by looking an Applescript that does what you want, and then doing the translation Javascript yourself.  You can also use an Applescript library if the conversion eludes you, I have had to do this.
+Unfortunately, there are many more resources available for Applescript on the interwebs (or even from Apple) than there is for JXA.  When googling for an example or recipe, you'll probably find much more help by looking an Applescript that does what you want, and then converting to Javascript yourself.  You can also use an Applescript library if the conversion eludes you (I have had to do this).
