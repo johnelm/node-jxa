@@ -6,7 +6,7 @@ Use your favorite node.js modules, or your own local modules in your JXA (OSX Ja
 
 It's OS X automation, using Javascript.
 
-*AppleScript* has long been the scripting language provided by Apple for automating and integrating apps on Mac OS X.  The Internet is replete with Q & A, tips and examples of how to use Applescript to automate various menial tasks, like:
+*Applescript* has long been the scripting language provided by Apple for automating and integrating apps on Mac OS X.  The Internet is replete with Q & A, tips and examples of how to use Applescript to automate various menial tasks, like:
 
 - Playing or managing songs in iTunes
 - Setting your iMessage status
@@ -26,7 +26,7 @@ const myModule = require( './my-module' );  // local modules too
 
 > ES6 module syntax (`import from`) aren't currently supported, so stick with `require()`, and use `module.exports` in your own local modules.
 
-You can also use your favorite Javascript editor instead of the OS X Script Editor, and use workflow that is much more familiar to JS developers (vs. compiling .js files to .scpt binary format).
+You can also use your **favorite Javascript editor** instead of the OS X Script Editor, and use workflow that is much more familiar to JS developers (vs. compiling .js files to .scpt binary format).
  
 ## Installation and usage
 
@@ -69,19 +69,19 @@ All modules you `require` in your scripts must be available, so Browserify can b
 
 I suggest managing your node-jxa scripts like any node.js project, with a package.json specifying the needed module dependencies.  Simply use `yarn` or `npm` to add and remove the libraries you need.
 
-### Using AppleScript libraries
+### Using Applescript libraries
 
-You can use your AppleScript libraries in your JXA scripts using the `Library` global function, like so:
+You can use your Applescript libraries in your JXA scripts using the `Library` global function, like so:
 
 ```javascript
 let myAsLib = Library( 'myApplescriptLibary' ) // skip the .scpt suffix
 ```
 
-All top-level AppleScript routines and handlers in the library will be available as functions on the imported object.
+All top-level Applescript routines and handlers in the library will be available as functions on the imported object.
 
 Library files must be located in your [Script Libraries folder or in your OSA_LIBRARY_PATH](https://developer.apple.com/library/content/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/OSX10-11.html#//apple_ref/doc/uid/TP40014508-CH110-SW11) (the latter as of OS X 10.11) to be used in this way.
 
-This works with JXA libraries too - you can use `Library()` to import .scpt scripts compiled from JavaScript.  But since node-jxa allows you to `require()` from your local js files, it's much better to use your js libraries like local node.js modules, using `module.exports`.
+This works with JXA libraries too - you can use `Library()` to import .scpt scripts compiled from Javascript.  But since node-jxa allows you to `require()` from your local js files, it's much better to use your js libraries like local node.js modules, using `module.exports`.
 
 ### Debugging
 
