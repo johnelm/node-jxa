@@ -15,7 +15,7 @@ It's OS X automation, using Javascript.
 
 Since OS X 10.10 (Yosemite), Javascript (called Javascript for Automation, or **JXA**) is also supported for app automation.  This is great news, especially for Javascript developers who want to automate workflows on their Mac.
 
-### OK.  What is `node-jxa`?
+### What is *node-jxa*?
 
 Based on [this awesome tip](https://github.com/JXA-Cookbook/JXA-Cookbook/wiki/Importing-Scripts#commonjs--browserify), `node-jxa` allows you to use commonJS modules in your JXA scripts.  You can `require` modules installed from npm, or your own local modules:
 
