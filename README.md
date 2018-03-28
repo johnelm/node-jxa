@@ -1,6 +1,6 @@
 # node-jxa
 
-Use your favorite node.js modules, or your own local modules in your JXA (OSX Javascript automation) scripts.  Based on [this awesome tip](https://github.com/JXA-Cookbook/JXA-Cookbook/wiki/Importing-Scripts#commonjs--browserify) from the [JXA Cookbook](https://github.com/JXA-Cookbook/JXA-Cookbook).
+Use your favorite node.js modules, or your own local modules, in your JXA (OSX Javascript automation) scripts.  Based on [this awesome tip](https://github.com/JXA-Cookbook/JXA-Cookbook/wiki/Importing-Scripts#commonjs--browserify) from the [JXA Cookbook](https://github.com/JXA-Cookbook/JXA-Cookbook).
 
 ### What is JXA?
 
