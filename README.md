@@ -99,7 +99,7 @@ If you use `node-debug-jxa` (instead of `node-jxa`) to run your script (or in yo
 
 Sourcemaps will also be included if the environment variable `NODE_DEBUG_JXA` is set to `true` or `1`, regardless of which command is used to run the script.
 
-> Depending on your Mac, you might never notice a difference in performance when including sourcemaps.  You'll definitely see more of a performance hit from requiring many large or spurious libraries.
+> Depending on your Mac, you might never notice a difference in performance when including sourcemaps.  You'll definitely see more of a performance hit from requiring many large or spurious libraries, regardless of sourcemaps.
 
 ### Other JXA resources
 
