@@ -5,11 +5,11 @@ const DEBUG_SWITCHES = [ '--debug', '-d' ];
 
 module.exports = ( processArgs ) => {
 
-  const nonProcessArgs = processArgs.argv.slice( 2 );
-  const nonDebugSwitchArgs = nonProcessArgs.filter( arg => !DEBUG_SWITCHES.includes( arg ));
+  const nonProcessArgs = processArgs.argv.slice( 2 );  // lose the 'node' and 'index.js'
+  const nonDebugSwitchArgs = nonProcessArgs.filter( arg => !DEBUG_SWITCHES.includes( arg )); // ignoring debug switch
   const jxaScriptArg = nonDebugSwitchArgs[ 0 ];
 
-  if ( !nonDebugSwitchArgs.length ) {
+  if ( !jxaScriptArg ) {
     console.error( 'error: no jxa script specified' );
   } else {
     nodeJxa(

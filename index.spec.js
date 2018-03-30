@@ -52,6 +52,15 @@ describe('debug mode is properly enabled', () => {
     );
     expect(nodeJxa.mock.calls[0][1]).toHaveProperty('debug', true);
   })
+  test('adds debug option and still runs given multiple debug switches', () => {
+
+    index(
+      Object.assign({}, defaultProcessArgs, {
+        argv: ['node', 'index', './example.js', '--debug', '-d' ]
+      })
+    );
+    expect(nodeJxa.mock.calls[0][1]).toHaveProperty('debug', true);
+  })
   test('adds debug option with switch first in args', () => {
 
     index(
@@ -67,6 +76,7 @@ describe('debug mode is properly enabled', () => {
         argv: ['node', 'index', './example.js']
       })
     );
+    expect(nodeJxa.mock.calls[0][0]).toBe('./example.js');
     expect(nodeJxa.mock.calls[0][1]).toHaveProperty('debug', false);
   })
 })
@@ -95,6 +105,14 @@ describe('handles jxa script argument properly', () => {
       })
     );
     expect(nodeJxa.mock.calls[0][0]).toBe('./example.js');
+  });
+  test('executes properly with spaces in script path', () => {
+    index(
+      Object.assign({}, defaultProcessArgs, {
+        argv: ['node', 'index', '-d', './example file.js']
+      })
+    );
+    expect(nodeJxa.mock.calls[0][0]).toBe('./example file.js');
   });
   test('handles missing script argument', () => {
 
