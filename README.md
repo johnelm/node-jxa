@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/johnelm/node-jxa.svg?branch=master)](https://travis-ci.org/johnelm/node-jxa)
 [![npm version](https://badge.fury.io/js/node-jxa.svg)](https://badge.fury.io/js/node-jxa)
-[![npm downloads](https://img.shields.io/npm/dt/node-jxa.svg)](https://img.shields.io/npm/dt/node-jxa.svg)
+[![downloads](https://img.shields.io/npm/dt/node-jxa.svg?maxAge=60)](https://img.shields.io/npm/dt/node-jxa.svg?maxAge=60)
+[![github](https://img.shields.io/github/package-json/v/johnelm/node-jxa.svg?label=github&link=https://github.com/johnelm/node-jxa&maxAge=60)](https://img.shields.io/github/package-json/v/johnelm/node-jxa.svg?label=github&link=https://github.com/johnelm/node-jxa&maxAge=60)
 
 Use your favorite node.js modules, or your own local modules, in your JXA (OSX Javascript automation) scripts.  Based on [this awesome tip](https://github.com/JXA-Cookbook/JXA-Cookbook/wiki/Importing-Scripts#commonjs--browserify) from the [JXA Cookbook](https://github.com/JXA-Cookbook/JXA-Cookbook).
 
