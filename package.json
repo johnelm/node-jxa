@@ -1,6 +1,6 @@
 {
   "name": "node-jxa",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Use CommonJS node modules (and your favorite JS editory) for your JXA (Javascript for OSX automation) scripts.",
   "os": [
     "darwin"
