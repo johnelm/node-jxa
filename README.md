@@ -1,5 +1,10 @@
 # node-jxa
 
+[![Build Status](https://travis-ci.org/johnelm/node-jxa.svg?branch=master)](https://travis-ci.org/johnelm/node-jxa)
+[![npm version](https://badge.fury.io/js/node-jxa.svg)](https://www.npmjs.com/package/node-jxa)
+[![downloads](https://img.shields.io/npm/dt/node-jxa.svg?maxAge=60)](https://www.npmjs.com/package/node-jxa)
+[![github](https://img.shields.io/github/package-json/v/johnelm/node-jxa.svg?label=github&link=https://github.com/johnelm/node-jxa&maxAge=60)](https://github.com/johnelm/node-jxa)
+
 Use your favorite node.js modules, or your own local modules, in your JXA (OSX Javascript automation) scripts.  Based on [this awesome tip](https://github.com/JXA-Cookbook/JXA-Cookbook/wiki/Importing-Scripts#commonjs--browserify) from the [JXA Cookbook](https://github.com/JXA-Cookbook/JXA-Cookbook).
 
 ### What is JXA?
@@ -24,7 +29,7 @@ const _ = require( 'lodash' ); // from npm
 const myModule = require( './my-module' );  // local modules too
 ```
 
-> ES6 module syntax (`import from`) aren't currently supported, so stick with `require()`, and use `module.exports` in your own local modules.
+> ES6 module syntax (`import from`) isn't currently supported, so stick with `require()`, and use `module.exports` in your own local modules.
 
 You can also use your **favorite Javascript editor** instead of the OS X Script Editor, and use workflow that is much more familiar to JS developers (vs. compiling .js files to .scpt binary format).
  
@@ -34,6 +39,8 @@ You'll likely want to install node-jxa globally:
 ```bash
 yarn global add node-jxa # or the npm equivalent
 ```
+
+This will install `node-jxa` and `node-debug-jxa` and make them available in your PATH (see Debugging below for details on the latter).
 
 .. then you can (optionally) use a shebang at the top of your JXA script:
 
@@ -55,6 +62,12 @@ chmod u+x my-jxa-script.js
 ./my-jxa-script.js
 ```
 
+You can of course use the `node-jxa` commands on the command line; simply provide the jxa script as the first argument:
+
+```bash
+node-jxa ./my-jxa-script.js
+```
+
 ### Node.js engine and JXA runtime
 
 Note that your installed node.js engine is only used by `node-jxa` to bundle up your module dependencies, and to decorate your script with a couple of needed additions (using the Browserify API).  The resulting code is then piped to `osascript`, and your OS X JavaScriptCore (modified for OSA integration) is used to execute it.  Node.js is *not* ultimately used to execute your script.
@@ -65,7 +78,7 @@ Fortunately the supported ES syntax and features is quite modern (depending on y
 
 ### Project structure and availability of node modules
 
-All modules you `require` in your scripts must be available, so Browserify can bundle them into your script.
+All modules you `require` in your scripts must be installed (i.e. in the `node_modules` dir) to be available, so Browserify can bundle them into your script.
 
 I suggest managing your node-jxa scripts like any node.js project, with a package.json specifying the needed module dependencies.  Simply use `yarn` or `npm` to add and remove the libraries you need.
 
@@ -89,9 +102,9 @@ You can [debug your JXA scripts](https://developer.apple.com/library/content/rel
 
 If you use `node-debug-jxa` (instead of `node-jxa`) to run your script (or in your shebang), Browserify will include sourcemaps in the bundled code, for a cleaner debugging experience, focused on your own code.  This is the only difference between node-jxa and node-debug-jxa.
 
-Sourcemaps will also be included if the environment variable `NODE-DEBUG-JXA` is set to `true` or `1`, regardless of which command is used to run the script.
+Sourcemaps will also be included if the environment variable `NODE_DEBUG_JXA` is set to `true` or `1`, regardless of which command is used to run the script.
 
-> Depending on your Mac, you might never notice a difference in performance when including sourcemaps.  You'll definitely see more of a performance hit from requiring many large or spurious libraries.
+> Depending on your Mac, you might never notice a difference in performance when including sourcemaps.  You'll definitely see more of a performance hit from requiring many large or spurious libraries, regardless of sourcemaps.
 
 ### Other JXA resources
 
