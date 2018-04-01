@@ -47,12 +47,15 @@ test( 'decorates input script properly', () => {
 
   let write = jest.fn();
   let end = jest.fn();
-  cp.exec = jest.fn() ;
-  cp.exec.mockReturnValue( { stdin: { write, end }})
+  cp.spawn = jest.fn() ;
+  cp.spawn.mockReturnValue( { stdin: { write, end }})
 
   nodeJxa( './example.js', { debug: true } );
 
-  expect( cp.exec.mock.calls[0][0]).toBe( 'osascript -l JavaScript' );
+  expect( cp.spawn.mock.calls[0][0]).toBe( 'osascript' );
+  expect( cp.spawn.mock.calls[0][1]).toEqual(expect.arrayContaining( [ '-l', 'JavaScript' ] ) );
+  expect( cp.spawn.mock.calls[0][2]).toHaveProperty( 'stdio', [ 'pipe', 1, 2 ] )
+
   expect( write.mock.calls[0][0]).toContain ( 'window = this' );
   expect( write.mock.calls[0][0]).toContain ( 'ObjC.import("stdlib")' );
   expect( write.mock.calls[0][0]).toContain ( SRC );
@@ -61,3 +64,20 @@ test( 'decorates input script properly', () => {
   expect( end ).toBeCalled();
 
 });
+test( 'handles file error properly', () => {
+  let b = {
+    add: jest.fn(),
+    bundle: jest.fn( cb => { cb( new Error( "Error: Cannot find module '/Users/jelm1/code/node-jxa/blah.js'"), null ) } )
+  }
+  browserify.mockReturnValue( b );
+  process.exit = jest.fn();
+
+  global.console = { error: jest.fn() }
+
+  nodeJxa( 'blah.js', { debug: true } );
+
+  expect( console.error ).toBeCalled();
+  expect( process.exit ).toBeCalled();
+  expect( process.exit.mock.calls[0][0] ).toBeGreaterThan( 0 );
+
+} );
