@@ -40,7 +40,7 @@ You'll likely want to install node-jxa globally:
 yarn global add node-jxa # or the npm equivalent
 ```
 
-This will install `node-jxa` and `node-debug-jxa` and make them available in your PATH (see Debugging below for details on the latter).
+This will install `node-jxa` and make it available in your `PATH` env var.
 
 .. then you can (optionally) use a shebang at the top of your JXA script:
 
@@ -62,7 +62,7 @@ chmod u+x my-jxa-script.js
 ./my-jxa-script.js
 ```
 
-You can of course use the `node-jxa` commands on the command line; simply provide the jxa script as the first argument:
+You can of course use the `node-jxa` command on the command line; simply provide the jxa script as the first argument:
 
 ```bash
 node-jxa ./my-jxa-script.js
@@ -100,9 +100,9 @@ This works with JXA libraries too - you can use `Library()` to import .scpt scri
 
 You can [debug your JXA scripts](https://developer.apple.com/library/content/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/OSX10-11.html#//apple_ref/doc/uid/TP40014508-CH110-SW3) using Safari dev tools.
 
-If you use `node-debug-jxa` (instead of `node-jxa`) to run your script (or in your shebang), Browserify will include sourcemaps in the bundled code, for a cleaner debugging experience, focused on your own code.  This is the only difference between node-jxa and node-debug-jxa.
+If you add the `--debug` (or `-d`) switch to the `node-jxa`, command (including in your shebangs), Browserify will include sourcemaps in the bundled code, for a cleaner debugging experience that is more focused on your own code.
 
-Sourcemaps will also be included if the environment variable `NODE_DEBUG_JXA` is set to `true` or `1`, regardless of which command is used to run the script.
+Sourcemaps will also be included if the environment variable `NODE_DEBUG_JXA` is set to `true` or `1`, regardless of whether the `--debug` or `-d` switches are used.
 
 > Depending on your Mac, you might never notice a difference in performance when including sourcemaps.  You'll definitely see more of a performance hit from requiring many large or spurious libraries, regardless of sourcemaps.
 

@@ -1,14 +1,11 @@
 {
   "name": "node-jxa",
   "version": "1.4.0",
-  "description": "Use CommonJS node modules (and your favorite JS editory) for your JXA (Javascript for OSX automation) scripts.",
+  "description": "Use CommonJS node modules (and your favorite JS editor) for your JXA (Javascript for OSX automation) scripts.",
   "os": [
     "darwin"
   ],
-  "bin": {
-    "node-jxa": "index.js",
-    "node-debug-jxa": "index-debug.js"
-  },
+  "bin": "index.js",
   "scripts": {
     "test": "jest"
   },
