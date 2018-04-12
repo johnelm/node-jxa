@@ -7,7 +7,8 @@
   ],
   "bin": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "example": "node-jxa example.js"
   },
   "keywords": [
     "osa",
