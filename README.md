@@ -99,7 +99,7 @@ This works with JXA libraries too - you can use `Library()` to import .scpt scri
 
 ### Scripting Dictionaries
 
-With node-jxa you can use your favorite JS editor for writing and managing your JXA code, but the OS X Script is still useful for viewing the Scripting Dictionaries for your scriptable apps.  Essentially, this is the documentation for the API exposed by the apps' developers.  Look for **Open Dictionary...** on the File Menu.
+With node-jxa you can use your favorite JS editor for writing and managing your JXA code, but the OS X Script is still useful for viewing the Scripting Dictionaries for your scriptable apps.  Essentially, this is the documentation for the API exposed by the apps' developers.  Look for **Open Dictionary...** on the File Menu, and be sure to select `JavaScript` in the language selector at the top.
 
 ### Be prepared for some weirdness
 
