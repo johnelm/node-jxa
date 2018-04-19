@@ -31,12 +31,14 @@ const myModule = require( './my-module' );  // local modules too
 > ES6 module syntax (`import from`) isn't currently supported, so stick with `require()`, and use `module.exports` in your own local modules.
 
 You can also use your **favorite Javascript editor** instead of the OS X Script Editor, and use workflow that is much more familiar to JS developers (vs. compiling .js files to .scpt binary format).
+
+So long as your editor can launch a shebang'd script, you can run or debug JXA while you edit.
  
 ## Installation and usage
 
 You'll likely want to install node-jxa globally:
 ```bash
-yarn global add node-jxa # or the npm equivalent
+yarn global add node-jxa # or the npm equivalent: npm install -g node-jxa
 ```
 
 This will install `node-jxa` and make it available in your `PATH` env var.
@@ -81,6 +83,9 @@ All modules you `require` in your scripts must be installed (i.e. in the `node_m
 
 I suggest managing your node-jxa scripts like any node.js project, with a package.json specifying the needed module dependencies.  Simply use `yarn` or `npm` to add and remove the libraries you need.
 
+> Note that Browserify won't automatically package modules for which the `require`d path is computed at runtime.  For example, `let myNeededModulePath = './my/needed/module' ;  let myModule = require( myNeededModulePath );` will leave the module out and it won't work.  This can happen within modules you're getting from npm.
+> Browserify has techniques for handling this, but node-jxa doesn't currently employ them.
+
 ### Using Applescript libraries
 
 You can use your Applescript libraries in your JXA scripts using the `Library` global function, like so:
@@ -99,19 +104,19 @@ This works with JXA libraries too - you can use `Library()` to import .scpt scri
 
 ### Scripting Dictionaries
 
-With node-jxa you can use your favorite JS editor for writing and managing your JXA code, but the OS X Script is still useful for viewing the Scripting Dictionaries for your scriptable apps.  Essentially, this is the documentation for the API exposed by the apps' developers.  Look for **Open Dictionary...** on the File Menu.
+With node-jxa you can use your favorite JS editor for writing and managing your JXA code, but the OS X Script is still useful for viewing the Scripting Dictionaries for your scriptable apps.  Essentially, this is the documentation for the API exposed by the apps' developers.  Look for **Open Dictionary...** on the File Menu, and be sure to select `JavaScript` in the language selector at the top.
 
 ### Be prepared for some weirdness
 
 Some things are weird, including but not limited to:
 
 - trying to `console.log` a JXA application object will probably crash the process.
-- arrays returned directly by Applications (i.e. searching or filtering) are weird.  A simple trick like `array.map( el => el )` will give you a real JS array.
+- [Element Arrays](https://developer.apple.com/library/content/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/OSX10-10.html#//apple_ref/doc/uid/TP40014508-CH109-SW9) (arrays provided directly by Applications ( or [filtering via `whose()`](https://developer.apple.com/library/content/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/OSX10-10.html#//apple_ref/doc/uid/TP40014508-CH109-SW10) ) are weird.  A simple trick like `array.map( el => el )` will give you a real JS array.
 - property access for JXA objects is expensive.  If you're doing many reads, your script can take a long time and may even time out.  A caching strategy can help.
 
 ### Debugging
 
-You can [debug your JXA scripts](https://developer.apple.com/library/content/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/OSX10-11.html#//apple_ref/doc/uid/TP40014508-CH110-SW3) using Safari dev tools.
+You can debug your JXA scripts using Safari dev tools.  To debug, [enable JSContexts support](https://developer.apple.com/library/content/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/OSX10-11.html#//apple_ref/doc/uid/TP40014508-CH110-SW3) in Safari, then simply include the `debugger;` command in your script.  When you run the script it'll stop and open at that spot in the Safari debugger (from here, you can add additional breakpoints in Safari's debugger).
 
 If you add the `--debug` (or `-d`) switch to the `node-jxa`, command (including in your shebangs), Browserify will include sourcemaps in the bundled code, for a cleaner debugging experience that is more focused on your own code.
 
