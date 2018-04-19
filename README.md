@@ -38,7 +38,7 @@ So long as your editor can launch a shebang'd script, you can run or debug JXA w
 
 You'll likely want to install node-jxa globally:
 ```bash
-yarn global add node-jxa # or the npm equivalent
+yarn global add node-jxa # or the npm equivalent: npm install -g node-jxa
 ```
 
 This will install `node-jxa` and make it available in your `PATH` env var.
