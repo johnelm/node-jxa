@@ -81,6 +81,9 @@ All modules you `require` in your scripts must be installed (i.e. in the `node_m
 
 I suggest managing your node-jxa scripts like any node.js project, with a package.json specifying the needed module dependencies.  Simply use `yarn` or `npm` to add and remove the libraries you need.
 
+> Note that Browserify won't automatically package modules for which the `require`d path is computed at runtime.  For example, `let myNeededModulePath = './my/needed/module' ;  let myModule = require( myNeededModulePath );` will leave the module out and it won't work.  This can happen within modules you're getting from npm.
+> Browserify has techniques for handling this, but node-jxa doesn't currently employ them.
+
 ### Using Applescript libraries
 
 You can use your Applescript libraries in your JXA scripts using the `Library` global function, like so:
@@ -106,7 +109,7 @@ With node-jxa you can use your favorite JS editor for writing and managing your 
 Some things are weird, including but not limited to:
 
 - trying to `console.log` a JXA application object will probably crash the process.
-- arrays returned directly by Applications (i.e. searching or filtering) are weird.  A simple trick like `array.map( el => el )` will give you a real JS array.
+- [Element Arrays](https://developer.apple.com/library/content/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/OSX10-10.html#//apple_ref/doc/uid/TP40014508-CH109-SW9) (arrays provided directly by Applications ( or [filtering via `whose()`](https://developer.apple.com/library/content/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/OSX10-10.html#//apple_ref/doc/uid/TP40014508-CH109-SW10) ) are weird.  A simple trick like `array.map( el => el )` will give you a real JS array.
 - property access for JXA objects is expensive.  If you're doing many reads, your script can take a long time and may even time out.  A caching strategy can help.
 
 ### Debugging
