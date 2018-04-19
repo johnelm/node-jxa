@@ -31,6 +31,8 @@ const myModule = require( './my-module' );  // local modules too
 > ES6 module syntax (`import from`) isn't currently supported, so stick with `require()`, and use `module.exports` in your own local modules.
 
 You can also use your **favorite Javascript editor** instead of the OS X Script Editor, and use workflow that is much more familiar to JS developers (vs. compiling .js files to .scpt binary format).
+
+So long as your editor can launch a shebang'd script, you can run or debug JXA while you edit.
  
 ## Installation and usage
 
@@ -114,7 +116,7 @@ Some things are weird, including but not limited to:
 
 ### Debugging
 
-You can [debug your JXA scripts](https://developer.apple.com/library/content/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/OSX10-11.html#//apple_ref/doc/uid/TP40014508-CH110-SW3) using Safari dev tools.
+You can debug your JXA scripts using Safari dev tools.  To debug, [enable JSContexts support](https://developer.apple.com/library/content/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/OSX10-11.html#//apple_ref/doc/uid/TP40014508-CH110-SW3) in Safari, then simply include the `debugger;` command in your script.  When you run the script it'll stop and open at that spot in the Safari debugger (from here, you can add additional breakpoints in Safari's debugger).
 
 If you add the `--debug` (or `-d`) switch to the `node-jxa`, command (including in your shebangs), Browserify will include sourcemaps in the bundled code, for a cleaner debugging experience that is more focused on your own code.
 
