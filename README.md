@@ -77,6 +77,8 @@ Note that your installed node.js engine is only used by `node-jxa` to bundle up 
 
 Fortunately the supported ES syntax and features is quite modern (depending on your OS X version).  As long as your installed node.js engine is recent enough for Browserify to bundle your code, you should be able to use just about any modern ES syntax you like (except for ES6 module syntax, i.e. `import from`).  To see what's supported, check what version of Safari you have, then find its column at [the Kangax compatibility site](https://kangax.github.io/compat-table/es6/).
 
+> Note: the Kangax table has a column for JXA, but it doesn't appear to be current.
+
 ### Project structure and availability of node modules
 
 All modules you `require` in your scripts must be installed (i.e. in the `node_modules` dir) to be available, so Browserify can bundle them into your script.
