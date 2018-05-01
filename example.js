@@ -3,6 +3,7 @@
 // say we need lodash for our script  ( remember to `yarn` or `npm install` before running this example! )
 const _ = require( 'lodash' ); 
 
+// eslint-disable-next-line no-undef
 const app = Application.currentApplication(); // or Application( "Microsoft Outlook" ), or whatever scriptable application you desire
 app.includeStandardAdditions = true
 
