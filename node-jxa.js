@@ -2,7 +2,7 @@ const browserify = require( 'browserify' );
 const cp = require( 'child_process' );
 
 const HEAD = 'window = this;\nObjC.import("stdlib");\ntry {\n ';
-const TAIL = ';\n} catch (e) {\n console.error( e.message );\n $.exit(1); \n}\n$.exit(0);';
+const TAIL = ';\n} catch (e) {\n console.log( e.message );\n $.exit(1); \n}\n$.exit(0);';
 const OSA_JXA_CMD = 'osascript';
 const OSA_JXA_CMD_ARGS = ['-l', 'JavaScript' ];
 
