@@ -1,6 +1,6 @@
 {
   "name": "node-jxa",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Use CommonJS node modules (and your favorite JS editor) for your JXA (Javascript for OSX automation) scripts.",
   "repository": "https://github.com/johnelm/node-jxa.git",
   "os": [
