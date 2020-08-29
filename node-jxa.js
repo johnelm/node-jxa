@@ -1,10 +1,12 @@
 const browserify = require( 'browserify' );
 const cp = require( 'child_process' );
 
+// console.error = console.log;
+
 const HEAD = 'window = this;\nObjC.import("stdlib");\ntry {\n ';
 const TAIL = ';\n} catch (e) {\n console.error( e.message );\n $.exit(1); \n}\n$.exit(0);';
-const OSA_JXA_CMD = 'osascript';
-const OSA_JXA_CMD_ARGS = ['-l', 'JavaScript' ];
+const OSA_JXA_CMD = 'osascript'; // here's where I would put an 'osacompile'
+const OSA_JXA_CMD_ARGS = [ '-l', 'JavaScript' ];
 
 
 module.exports = ( scriptFile, browserifyOptions = { debug: false } ) => {
@@ -23,7 +25,7 @@ module.exports = ( scriptFile, browserifyOptions = { debug: false } ) => {
       osaProcess
         .on( 'exit', ( exitCode, sigTerm ) => {
           if ( !!sigTerm ) {
-            console.error( `osascript process terminated by signal: ${sigTerm}`);
+            console.error( `node-jxa: osascript process terminated by signal: ${sigTerm}`);
             process.exit( 1 );
           } else {
             process.exit( exitCode );

@@ -3,6 +3,10 @@ const nodeJxa = require('./node-jxa');
 const DEBUG_ENV_VAR = 'NODE_DEBUG_JXA';
 const DEBUG_SWITCHES = [ '--debug', '-d' ];
 
+console.error = ( arg /*...args*/ ) => {
+  return console.log( `Error: ${arg}` )
+}
+
 module.exports = ( processArgs ) => {
 
   const nonProcessArgs = processArgs.argv.slice( 2 );  // lose the 'node' and 'index.js'
